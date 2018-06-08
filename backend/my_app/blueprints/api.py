@@ -26,7 +26,8 @@ class BaseResource(Resource):
         get_obj = self.class_model.query.get(request.args['id'])
 
         if get_obj:
-            return schema_instance.dump(get_obj)
+            schema_result = schema_instance.dump(get_obj)
+            return schema_result.data
         else:
             return abort(404, message="No {} object found with id {}".format(
                 self.class_model.__name__, request.args['id']
@@ -38,14 +39,16 @@ class BaseResource(Resource):
         post_obj = result.data
         db.session.add(post_obj)
         db.session.commit()
-        return schema_instance.dump(post_obj)
+        schema_result = schema_instance.dump(post_obj)
+        return schema_result.data
 
     def put(self):
         schema_instance = self.class_schema()
         result = schema_instance.load(request.json, db.session)
         put_obj = result.data
         db.session.commit()
-        return schema_instance.dump(put_obj)
+        schema_result = schema_instance.dump(put_obj)
+        return schema_result.data
 
     def delete(self):
         schema_instance = self.class_schema()
@@ -53,7 +56,8 @@ class BaseResource(Resource):
         delete_obj = result.data
         db.session.delete(delete_obj)
         db.session.commit()
-        return schema_instance.dump(delete_obj)
+        schema_result = schema_instance.dump(delete_obj)
+        return schema_result.data
 
 
 for model in model_classes:

@@ -18,7 +18,7 @@ const actions = {
 
 const mutations = {
   setPages (state, payload) {
-    state.luigiErrors = payload.luigiErrors
+    state.pages = payload.pages
   }
 }
 

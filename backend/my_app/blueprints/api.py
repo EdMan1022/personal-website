@@ -1,7 +1,7 @@
 from flask import Blueprint
-from flask_restful import Api
+from flask_restful import Api, abort
 
-from backend.my_app.models import model_classes
+from backend.my_app.models import model_classes, Page
 from backend.my_app.helpers.base_resource import BaseResource
 
 api_blueprint = Blueprint('api', __name__)
@@ -20,5 +20,39 @@ for model in model_classes:
         }
     )
 
+
+class PagesResource(BaseResource):
+    """
+    Special resource to handle gets of all pages
+
+    """
+    class_model = Page
+    class_schema = Page.__marshmallow__
+    out_schema = Page.__out_marshmallow__
+    url = '/api/pages/'
+
+    message = "Method not allowed"
+
+    def get(self):
+        schema_instance = self.out_schema(many=True)
+
+        objs = self.class_model.query.all()
+        result = schema_instance.dump(objs)
+        print(result.data)
+        return result.data
+
+    def post(self):
+        return abort(405, message=self.message)
+
+    def put(self):
+        return abort(405, message=self.message)
+
+    def delete(self):
+        return abort(405, message=self.message)
+
+
 for resource in BaseResource.__subclasses__():
     api.add_resource(resource, resource.get_url())
+
+
+

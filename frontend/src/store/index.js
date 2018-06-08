@@ -12,7 +12,7 @@ const state = {
 const actions = {
   loadPages (context) {
     return fetchPages()
-      .then((response) => context.commit('setPages', {pages: response}))
+      .then((response) => context.commit('setPages', {pages: response.data}))
   }
 }
 

@@ -1,15 +1,4 @@
-from enum import Enum
-
 from backend.my_app.extensions import db
-
-
-class PageType(Enum):
-    """
-    Enumerated type for the different types of pages allowed by the app
-    """
-    resume = 'resume'
-    blog_post = 'blog_post'
-    project = 'project'
 
 
 class Page(db.Model):
@@ -28,7 +17,7 @@ class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created = db.Column(db.DateTime)
     last_updated = db.Column(db.DateTime)
-    page_type = db.Column(db.Enum(PageType))
+    page_type = db.Column(db.Text)
     published = db.Column(db.Boolean)
 
     block = db.relationship('Block', backref=db.backref('page'))

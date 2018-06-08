@@ -1,16 +1,14 @@
 <template>
-  <div class="page_index">
-    <b-container>
-      <b-row class="justify-content-center">
-        <b-cols>
-          <page-card
-          v-for="page in pages" :key="page.id"
-          v-bind:id="page.id"
-          ></page-card>
-        </b-cols>
-      </b-row>
-    </b-container>
-  </div>
+  <b-container>
+    <b-row class="justify-content-center">
+      <b-col cols="8">
+        <page-card
+        v-for="page in pages" :key="page.id"
+        v-bind:id="page.id"
+        ></page-card>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>

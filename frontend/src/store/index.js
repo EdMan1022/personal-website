@@ -22,7 +22,11 @@ const mutations = {
   }
 }
 
-const getters = {}
+const getters = {
+  getPageById: (state) => (id) => {
+    return state.pages.find(page => page.id === id)
+  }
+}
 
 const store = new Vuex.Store({
   state,

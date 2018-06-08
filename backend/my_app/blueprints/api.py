@@ -38,7 +38,6 @@ class PagesResource(BaseResource):
 
         objs = self.class_model.query.all()
         result = schema_instance.dump(objs)
-        print(result.data)
         return result.data
 
     def post(self):

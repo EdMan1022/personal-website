@@ -4,7 +4,7 @@ from unittest import TestCase, mock
 class BaseTestClass(TestCase):
     target_path = None
 
-    def create_patch(self, module_name: str, path: str=None):
+    def create_patch(self, module_name: str, path: str = None):
         """
         Sets up a new mock for a given module in the target path
 
@@ -21,4 +21,8 @@ class BaseTestClass(TestCase):
         return new_mock.start()
 
     def setUp(self):
-        pass
+        self.base_model_args = {
+            "id": mock.MagicMock(),
+            "created": mock.MagicMock(),
+            "last_updated": mock.MagicMock()
+        }

@@ -2,9 +2,10 @@ from flask_script import Manager
 from flask_migrate import MigrateCommand
 
 from backend.my_app import create_app, db, ma, DevConfig, migrate
+from backend.my_app.blueprints import api_blueprint
 
 
-app = create_app(db, ma, DevConfig(), [],
+app = create_app(db, ma, DevConfig(), [api_blueprint],
                  migrate)
 
 manager = Manager(app)

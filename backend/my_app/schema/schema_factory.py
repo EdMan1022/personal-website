@@ -36,5 +36,12 @@ def setup_schemas(db, ma, models):
 
     for model in models:
 
-        if not model.__marshmallow__:
+        try:
+            model.__marshmallow__
+        except AttributeError:
             setup_schema(db, ma, model)
+
+        try:
+            model.__out_marshmallow__
+        except AttributeError:
+            model.__out_marshmallow__ = model.__marshmallow__

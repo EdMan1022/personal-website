@@ -7,6 +7,7 @@ from backend.my_app.create_app import create_app
 from backend.my_app.schema.schema_factory import setup_schema
 from backend.my_app.models.page import Page
 from backend.my_app import db, ma
+from backend.my_app.helpers.base_resource import BaseResource
 
 
 class TestCreateApp(BaseTestClass):
@@ -45,3 +46,29 @@ class TestSchemaFactory(BaseTestClass):
         setup_schema(db, ma, Page)
 
         self.assertIsNotNone(Page.__marshmallow__)
+
+
+class TestBaseResource(BaseTestClass):
+
+    target_path = 'backend.my_app.helpers.base_resource'
+
+    def setUp(self):
+        super(TestBaseResource, self).setUp()
+
+        self.request_patch = self.create_patch('request')
+        self.db_patch = self.create_patch('db')
+
+        # Set up a test resource
+        self.base_resource = BaseResource()
+        self.base_resource.class_model = MagicMock()
+        self.base_resource.class_schema = MagicMock()
+        self.base_resource.out_schema = MagicMock()
+        self.base_resource.url = 'test'
+
+    def test_resource(self):
+
+        self.base_resource.get()
+        self.base_resource.post()
+        self.base_resource.put()
+        self.base_resource.delete()
+

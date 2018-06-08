@@ -16,4 +16,3 @@ class Block(db.Model):
     page_id = db.Column(db.Integer, db.ForeignKey('page.id'))
     content = db.Column(db.String)
 
-    __marshmallow__ = None

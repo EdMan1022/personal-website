@@ -13,6 +13,10 @@ class Page(db.Model):
     id: int pk
     created: datetime
     last_updated: datetime
+
+    :Later Assigned:
+    __marshmallow__: Schema Class that controls data out
+    __out_marshmallow__ Schema Class that controls data in
     """
     id = db.Column(db.Integer, primary_key=True)
     created = db.Column(db.DateTime)
@@ -21,5 +25,3 @@ class Page(db.Model):
     published = db.Column(db.Boolean)
 
     block = db.relationship('Block', backref=db.backref('page'))
-
-    __marshmallow__ = None

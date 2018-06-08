@@ -37,4 +37,11 @@ class TestSchemaFactory(BaseTestClass):
         self.mock_model.__name__ = 'TEST'
 
     def test_setup_schema(self):
+        """
+        Test that the setup_schema alters the correct attribute on a model
+
+        :return:
+        """
         setup_schema(db, ma, Page)
+
+        self.assertIsNotNone(Page.__marshmallow__)

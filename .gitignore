@@ -160,15 +160,15 @@ venv.bak/
 
 .idea/
 
-frontend/.DS_Store
-frontend/node_modules/
-frontend/dist/
-frontend/npm-debug.log*
-frontend/yarn-debug.log*
-frontend/yarn-error.log*
-frontend/test/unit/coverage/
-frontend/test/e2e/reports/
-frontend/selenium-debug.log
+frontend-directory/.DS_Store
+frontend-directory/node_modules/
+frontend-directory/dist/
+frontend-directory/npm-debug.log*
+frontend-directory/yarn-debug.log*
+frontend-directory/yarn-error.log*
+frontend-directory/test/unit/coverage/
+frontend-directory/test/e2e/reports/
+frontend-directory/selenium-debug.log
 
 # Editor directories and files
 

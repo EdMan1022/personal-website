@@ -160,6 +160,7 @@ venv.bak/
 
 .idea/
 
+
 frontend-directory/.DS_Store
 frontend-directory/node_modules/
 frontend-directory/dist/
